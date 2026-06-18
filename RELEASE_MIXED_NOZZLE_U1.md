@@ -30,7 +30,11 @@ is compared with the physical nozzle selected by `extruder_map_table`.
   `overlays/firmware-extended/11-patch-klipper/patches/home/lava/klipper/`.
 - Firmware `.bin` exists locally.
 - User flashed the generated firmware and the printer booted.
-- Additional end-to-end print validation is still required.
+- Real Snapmaker U1 mixed-nozzle print on 2026-06-18 passed.
+
+Real print photo:
+
+`https://raw.githubusercontent.com/MOVIBALE/OrcaSlicer/mixed-nozzle-u1/docs/mixed-nozzle-u1/assets/real-print-cube.jpg`
 
 ## Warning
 

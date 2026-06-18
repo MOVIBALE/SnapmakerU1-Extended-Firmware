@@ -50,6 +50,15 @@ Current local test build:
 
 `firmware/U1_extended_1.4.1-paxx12-19_mixed-nozzle-codex.bin`
 
+## Real Print Validation
+
+A real Snapmaker U1 mixed-nozzle test print completed successfully on
+2026-06-18 using the patched slicer and this validation patch.
+
+Validation photo:
+
+`https://raw.githubusercontent.com/MOVIBALE/OrcaSlicer/mixed-nozzle-u1/docs/mixed-nozzle-u1/assets/real-print-cube.jpg`
+
 ## Risk
 
 This is experimental firmware. Flash only if you have a known-good recovery
