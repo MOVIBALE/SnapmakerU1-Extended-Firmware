@@ -1,7 +1,7 @@
 # Snapmaker U1 Mixed Nozzle Validation Patch
 
 This patch is intended to pair with the experimental Snapmaker Orca
-`mixed-nozzle-u1` branch.
+`Min/2.3.5-beta-mixed-nozzle` branch.
 
 ## Problem
 
@@ -44,11 +44,18 @@ This patch only changes nozzle-diameter validation. It does not change:
 - bed probing
 - print recovery behavior
 
-## Local Artifact
+## Building And Distribution
 
-Current local test build:
+Build with the repository's documented Docker workflow:
 
-`firmware/U1_extended_1.4.1-paxx12-19_mixed-nozzle-codex.bin`
+```sh
+./dev.sh make build PROFILE=extended OUTPUT_FILE=firmware/U1_extended_mixed_nozzle.bin
+```
+
+This repository and the patched Klipper component are GPL-3.0. A distributed
+binary must identify the exact source commit, keep the license notices, and
+provide recipients access to the corresponding source. Do not publish an old
+local binary as if it were built from a newer commit.
 
 ## Real Print Validation
 
@@ -67,3 +74,11 @@ image and are comfortable restoring the printer.
 Print quality and safety still depend on correct slicer settings, physical
 nozzle installation, center-to-center tool offset calibration, purge behavior,
 and first-layer tuning.
+
+To restore official behavior, keep a known-good official U1 image before
+flashing and follow the recovery/reflash procedure appropriate for the
+currently installed extended firmware. This is an independent community patch,
+not an official Snapmaker firmware release.
+
+The ESP32 Timelapse Box is unrelated: it uses the slicer's
+`ESP_TIMELAPSE_SHOT` Klipper macro boundary and does not require this patch.

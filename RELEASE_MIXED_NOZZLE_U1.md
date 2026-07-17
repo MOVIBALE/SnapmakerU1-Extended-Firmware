@@ -2,15 +2,15 @@
 
 ## Title
 
-Snapmaker U1 extended firmware mixed-nozzle validation test build
+Snapmaker U1 mixed-nozzle validation Experimental Alpha
 
 ## Tag
 
-`mixed-nozzle-u1-v0.1.0`
+`mixed-nozzle-u1-alpha.1`
 
 ## Target Branch
 
-`mixed-nozzle-u1`
+`Min/mixed-nozzle-u1-alpha`
 
 ## Summary
 
@@ -22,7 +22,10 @@ is compared with the physical nozzle selected by `extruder_map_table`.
 
 ## Asset To Attach
 
-`firmware/U1_extended_1.4.1-paxx12-19_mixed-nozzle-codex.bin`
+`U1_extended_mixed_nozzle_alpha.1.bin`
+
+Attach a SHA-256 checksum and link the exact source commit used to build the
+binary. GPL-3.0 corresponding-source obligations apply.
 
 ## Validation
 
@@ -52,3 +55,9 @@ wrong.
 - Does not validate mixed layer heights.
 - Requires matching slicer G-code that reports per-logical-tool nozzle
   diameters.
+
+## Independence From ESP32 Timelapse
+
+The ESP32 Timelapse Box is not a dependency of this firmware, and this firmware
+is not a dependency of ESP32 timelapse. The two experimental features only
+coexist in the matching slicer build.

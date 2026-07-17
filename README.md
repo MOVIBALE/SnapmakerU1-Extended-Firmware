@@ -32,10 +32,15 @@ Real Snapmaker U1 mixed-nozzle print validation passed on 2026-06-18:
 Read the branch-specific notes before flashing:
 
 - [Mixed-nozzle validation patch notes](docs/mixed-nozzle-u1.md)
+- [混合口径校验补丁说明](docs/mixed-nozzle-u1.zh-CN.md)
 - [Mixed-nozzle firmware release draft](RELEASE_MIXED_NOZZLE_U1.md)
+- [混合口径固件发布草稿](RELEASE_MIXED_NOZZLE_U1.zh-CN.md)
 
 This patch only changes validation logic. It does not tune flow, pressure
 advance, purge, wipe, tool offsets, or first-layer behavior.
+
+The ESP32 Timelapse Box is a separate Klipper macro integration in the slicer
+and does not depend on this firmware patch.
 
 ## Download
 
