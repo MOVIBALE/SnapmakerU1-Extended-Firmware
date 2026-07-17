@@ -12,6 +12,36 @@ This is an independent project and is not affiliated with Snapmaker.
 >
 > Custom firmware is intended for users with appropriate technical knowledge. Ensure you understand the implications before proceeding.
 
+## mixed-nozzle-u1 Experimental Branch
+
+This fork branch adds an experimental validation patch for Snapmaker U1
+mixed-nozzle printing. It is intended to be used with the matching Snapmaker
+Orca `mixed-nozzle-u1` branch:
+
+https://github.com/MOVIBALE/OrcaSlicer/tree/mixed-nozzle-u1
+
+The patch changes Klipper-side print task validation so slicer-reported nozzle
+diameters are checked per logical tool and mapped to the physical toolhead with
+`extruder_map_table`. This lets a U1 test job use a 0.2 mm nozzle for outer
+walls and a 0.4 mm nozzle for inner walls/infill.
+
+Real Snapmaker U1 mixed-nozzle print validation passed on 2026-06-18:
+
+![Successful Snapmaker U1 mixed-nozzle print](https://raw.githubusercontent.com/MOVIBALE/OrcaSlicer/mixed-nozzle-u1/docs/mixed-nozzle-u1/assets/real-print-cube.jpg)
+
+Read the branch-specific notes before flashing:
+
+- [Mixed-nozzle validation patch notes](docs/mixed-nozzle-u1.md)
+- [混合口径校验补丁说明](docs/mixed-nozzle-u1.zh-CN.md)
+- [Mixed-nozzle firmware release draft](RELEASE_MIXED_NOZZLE_U1.md)
+- [混合口径固件发布草稿](RELEASE_MIXED_NOZZLE_U1.zh-CN.md)
+
+This patch only changes validation logic. It does not tune flow, pressure
+advance, purge, wipe, tool offsets, or first-layer behavior.
+
+The ESP32 Timelapse Box is a separate Klipper macro integration in the slicer
+and does not depend on this firmware patch.
+
 ## Download
 
 Get the latest pre-built firmware from [Releases](https://github.com/paxx12/SnapmakerU1/releases).

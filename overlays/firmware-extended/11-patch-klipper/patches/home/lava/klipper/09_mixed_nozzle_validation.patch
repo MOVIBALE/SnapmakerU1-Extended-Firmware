@@ -1,0 +1,40 @@
+diff --git a/klippy/extras/print_task_config.py b/klippy/extras/print_task_config.py
+--- a/klippy/extras/print_task_config.py
++++ b/klippy/extras/print_task_config.py
+@@ -1283,12 +1283,30 @@ class PrintTaskConfig:
+                     tmp_print_task_config['extruders_used'][tmp_print_task_config['extruder_map_table'][i]] = True
+
+             # check nozzle diameter
+-            for i in range(PHYSICAL_EXTRUDER_NUM):
+-                if tmp_print_task_config['extruders_used'][i]:
+-                    if abs(tmp_print_task_config_2['nozzle_diameter'][0] - actual_nozzle_diameter[i]) > 0.001:
+-                        exception_code = 14
+-                        raise gcmd.error(f"[print_task_config] nozzle diameter mismatch:" +
+-                                            f"f_{tmp_print_task_config_2['nozzle_diameter'][0]} != e_{actual_nozzle_diameter[i]}")
++            #
++            # The slicer reports nozzle diameters per logical extruder.  A
++            # logical extruder is mapped to a physical toolhead through
++            # extruder_map_table, so mixed-nozzle jobs must compare each used
++            # logical extruder against its mapped physical toolhead instead of
++            # comparing all physical toolheads against the first slicer value.
++            for logical_index in range(LOGICAL_EXTRUDER_NUM):
++                if tmp_print_task_config_2['filament_used_g'][logical_index] <= 0.0001 and \
++                        tmp_print_task_config_2['filament_used_mm'][logical_index] <= 0.0001:
++                    continue
++
++                physical_index = tmp_print_task_config['extruder_map_table'][logical_index]
++                expected_nozzle_diameter = tmp_print_task_config_2['nozzle_diameter'][logical_index]
++                if expected_nozzle_diameter <= 0.001:
++                    expected_nozzle_diameter = tmp_print_task_config_2['nozzle_diameter'][0]
++
++                if expected_nozzle_diameter <= 0.001:
++                    continue
++
++                if abs(expected_nozzle_diameter - actual_nozzle_diameter[physical_index]) > 0.001:
++                    exception_code = 14
++                    raise gcmd.error(f"[print_task_config] nozzle diameter mismatch:" +
++                                        f"f{logical_index}_{expected_nozzle_diameter} != " +
++                                        f"e{physical_index}_{actual_nozzle_diameter[physical_index]}")
+
+             # check flow calibration
+             if tmp_print_task_config['flow_calibrate']:
