@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - develop
+      - Min/ci-mixed-nozzle-u1
     paths-ignore:
       - '*.md'
       - .github/workflows/*.yaml
