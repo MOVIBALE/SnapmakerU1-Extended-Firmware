@@ -82,7 +82,8 @@ jobs:
       shell: bash
       if: github.event_name == 'push'
       run: |
-        nextVer=$(./scripts/next_version.sh paxx12 test-branch-${{ github.ref_name }})
+        safe_ref="${GITHUB_REF_NAME//\//-}"
+        nextVer=$(./scripts/next_version.sh paxx12 "test-branch-${safe_ref}")
         echo "GIT_VERSION=${nextVer//v/}" | tee -a $GITHUB_ENV
 
     - name: Set GIT_VERSION (for Pull Request)
