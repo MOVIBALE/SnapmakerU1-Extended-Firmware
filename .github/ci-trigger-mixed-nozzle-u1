@@ -1,2 +1,3 @@
 This file exists only on the temporary Min/ci-mixed-nozzle-u1 branch to trigger the existing build workflow.
 Retry after sanitizing the branch-derived artifact name.
+Build the release-candidate image with its experimental version identifier.
